@@ -1,0 +1,17 @@
+<odoo>
+<record id="sale_ship_report_sale_order" model="ir.ui.view">
+    <field name="name">sale.report.ship</field>
+    <field name="model">sale.report</field>
+    <field name="inherit_id" ref="sale.view_order_product_pivot"/>
+    <field name="arch" type="xml">
+
+       <!--[@name='price_subtotal']-->
+
+       <xpath expr="//field" position="after">
+          <field name="ship_id" />
+        </xpath>
+
+
+    </field>
+</record>
+</odoo>

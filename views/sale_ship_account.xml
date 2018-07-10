@@ -1,0 +1,21 @@
+<odoo>
+<record id="account_inherit" model="ir.ui.view">
+    <field name="name">account.invoice.inherit</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_form"/>
+    <field name="arch" type="xml">
+        <!-- find field description and add the field
+             idea_ids after it -->
+        <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
+          <field name="ship_id" string="Ship"/>
+
+        </xpath>
+
+
+
+
+    </field>
+
+</record>
+
+</odoo>

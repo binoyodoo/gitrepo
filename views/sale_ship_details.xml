@@ -1,0 +1,77 @@
+<odoo>
+
+     <record model="ir.actions.act_window" id="action_ideas_ship">
+          <field name="name"> SaleShipDetails</field>
+         <field name="res_model">sale.ship.detail</field>
+          <field name="view_mode">tree,form</field>
+
+     </record>
+
+     <menuitem id ="menu_ideas_details" parent="menu_ideas"  name= "Ship Details" action="action_ideas_ship"  />
+
+      <record id="sale_ship_detail_tree" model="ir.ui.view">
+            <field name="name">sale.ship.details.tree</field>
+            <field name="model">sale.ship.detail</field>       <!-- _name in the model here saleship.py-->
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="ship_orders_details" >
+                    <field name="name" string="Name"></field>
+                    <field name="ship_id" string="Ship"></field>
+                    <field name="partner_id" string="Customer"></field>
+
+                </tree>
+            </field>
+
+      </record>
+
+        <record id="sale_ship_detail_form" model="ir.ui.view">
+            <field name="name">sale.ship.details.order.form</field>
+            <field name="model">sale.ship.detail</field>
+            <field name="arch" type="xml">
+
+               <form string="sale_ship_detail" >
+
+                   <group>
+                         <group>
+                             <field name="name" string="Name" />
+                             <field name="ship_id" string="Ship"/>
+
+
+                        </group>
+                        <group>
+                            <field name="sale_id" string="Sale Order"/>
+                            <field name="partner_id" string="Customer"/>
+                            <field name="product_quantity" string="Product Quantity"/>
+
+
+
+
+                       </group>
+                 </group>
+
+                  <notebook>
+                     <page string="Detail_line">
+                         <field name="ship_detail_line_ids" mode="tree">
+
+                             <tree string="Ship Detail Line">
+                                 <field name="product_id"/>
+                                 <field name="product_qty"/>
+                                 <field name="ship_id"/>
+
+                             </tree>
+                         </field>
+
+                     </page>
+                  </notebook>
+
+
+
+               </form>
+
+
+
+
+            </field>
+           </record>
+
+</odoo>

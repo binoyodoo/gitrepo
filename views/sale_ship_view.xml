@@ -1,0 +1,120 @@
+<odoo>
+
+     <record model="ir.actions.act_window" id="action_ideas">
+          <field name="name"> Saleship</field>
+         <field name="res_model">sale.ship</field>       <!--same name as in model _name  here in saleship.py-->
+          <field name="view_mode">tree,form</field>
+
+     </record>
+
+     <menuitem id ="menu_ideas" parent="sale.sale_menu_root"  name= "Sale Ship"  sequence="2" />
+     <menuitem id ="menu_ideas1" parent="menu_ideas"  name= "Ship" action="action_ideas"  />
+
+
+
+     <record id="ship_order_tree" model="ir.ui.view">
+            <field name="name">saleship.tree</field>
+            <field name="model">sale.ship</field>       <!-- _name in the model here saleship.py-->
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="ship_orders" >
+                    <field name="name" string="name of the ship"/>
+                    <field name="imo_no" string="imo number"/>
+                    <field name="man_date" string="manufacturing date"/>
+                    <field name="yard_no" string="yard no"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+
+        </record>
+
+         <record model="ir.ui.view" id="ship_search_view">
+                     <field name="name">course.search</field>
+                     <field name="model">sale.ship</field>
+                     <field name="arch" type="xml">
+                  <search>
+                     <field name="imo_no"/>
+                    <field name="yard_no"/>
+
+                     <group expand="0" string="Group By">
+
+                         <filter string="Yard_No" domain="[]" context="{'group_by':'yard_no'}"/>
+                         <filter string="Imo_No" domain="[]" context="{'group_by':'imo_no'}"/>
+
+                    </group>
+
+                  </search>
+
+                   <!--<search>-->
+                    <!--<field name="imo_no"/>-->
+
+                  <!--</search>      -->
+                    </field>
+                  </record>
+
+            <record id="ship_order_form" model="ir.ui.view">
+            <field name="name">saleship.order.form</field>
+            <field name="model">sale.ship</field>
+            <field name="arch" type="xml">
+
+
+
+
+                <form string="sale_ship_form" >
+                <field name="state" invisible="1"/>
+                    <header>
+
+                       <button name ="action_confirm" class="btn-primary" states="draft" type="object" string="Confirm"/>
+
+                       <button name="action_cancel" class="btn-info" states="sent"  type="object" string="Cancel"/>
+
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale"/>
+
+                        </header>
+
+                      <group>
+                         <group>
+                             <field name="name" string="name of the ship" />
+                             <field name="imo_no" string="imo number"/>
+                             <field name="man_date" string="manufacturing date"/>
+
+                        </group>
+                        <group>
+                            <field name="yard_no" string="yard no"/>
+                            <field name="ship_age" string="Age of the ship"/>
+
+
+                       </group>
+                      </group>
+
+                    <!--<notebook>-->
+
+                        <!--<page string="Cost Details">-->
+                      <!--<group>-->
+                       <!--<group>-->
+                             <!--<field name="man_cost" string="maufacturing cost"/>-->
+                              <!--<field name="shipng_cost" string="shiping cost"/>-->
+
+                       <!--</group>-->
+
+                            <!--<group>-->
+                                <!--<field name="misc_cost" string="miscellaneous cost"/>-->
+                             <!--<field name="serv_cost" string="service cost"/>-->
+                       <!--</group>-->
+
+
+                        <!--<group class="oe_subtotal_footer oe_right" colspan="2" name="total cost">-->
+
+                              <!--<field name="tot_cost" string="The total cost"/>-->
+
+
+                        <!--</group>-->
+                     <!--</group>-->
+                       <!--</page>-->
+
+                     <!--</notebook>-->
+                 </form>
+              </field>
+           </record>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+<template id="report_invoice_layouted_ship" inherit_id="account.report_invoice_document">
+      <xpath expr="//table/thead/tr/th[4]" position="after">
+            <th class="text-right">Ship</th>
+      </xpath>
+
+      <xpath expr="//table/tbody/tr/td/span[@t-field='l.price_unit']" position="after">
+            <td class="text-right">
+                <span t-field="l.ship_id"/>
+            </td>
+      </xpath>
+</template>
+
+      
+</odoo>

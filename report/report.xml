@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="ship_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table/thead/tr/th[3]" position="after">
+            <th class="text-right">Ship</th>
+        </xpath>
+
+        <xpath expr="//table/tbody/t/t/tr/td/span[@t-field='l.price_unit']" position="after">
+            <td class="text-right">
+                <span t-field="l.ship_id"/>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>

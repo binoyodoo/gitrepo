@@ -1,0 +1,39 @@
+<odoo>
+
+            <record id="wizard_action_view" model="ir.actions.act_window" >
+            <field name="name">wizard_action</field>
+            <field name="res_model">ship.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            </record>
+
+            <record id="wizard_form_view" model="ir.ui.view">
+                <field name="name">wizard_form</field>
+                <field name="model">ship.wizard</field>
+                <field name="arch" type="xml">
+                        <form string="Wizard_view">
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+
+                            </group>
+
+                            <group>
+                                <field name="imo_number"/>
+                                <!--<field name="print_button"/>-->
+                            </group>
+
+                            <!--<footer >-->
+                                <!--<button name="print_confirm" string="Print" class="btn-primary"></button>-->
+                                <!--<button name="cancel_confirm" string="Cancel" class="btn-primary"></button>-->
+
+                            <!--</footer>-->
+                        </form>
+                </field>
+            </record>
+
+    <menuitem id ="menu_ideas2" parent="menu_ideas" name="Ship Wizard" action="wizard_action_view"/>
+
+</odoo>

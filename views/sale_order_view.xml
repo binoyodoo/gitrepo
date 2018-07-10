@@ -1,0 +1,122 @@
+<odoo>
+<record id="sale_ship_form" model="ir.ui.view">
+    <field name="name">sale_saleship</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <!-- find field description and add the field
+             idea_ids after it -->
+        <xpath expr="//field[@name='payment_term_id']" position="after">
+          <field name="ship_id" string="Ship"/>
+
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+          <field name="ship_id" string="Ship"/>
+
+        </xpath>
+
+
+        <xpath expr="//sheet/notebook/page/group/group/field[@name='user_id']" position="after">
+          <field name="ship_id" string="Ship"/>
+
+        </xpath>
+
+        <xpath expr="//sheet/notebook/page[2]" position="after">
+
+                        <page string="Purchase Information">
+                            <field name="purchase_ids">
+                                    <tree string="Purchase Order">
+                                        <field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="date_order"/>
+                                        <field name="state" />
+
+                                    </tree>
+                            </field>
+
+                        </page>
+
+        </xpath>
+
+
+
+
+        <xpath expr="//form/header/button[@name='action_done']" position='after'>
+            <button name="confirm_ship" string="Ship" states="sale" type="object" class="btn-primary" />
+
+            <button name="print_quotation" string="Print" type="object" states="ship" class="o_sale_print"/>
+            <button name="action_quotation_send" string="Send by Email" type="object" states="ship"/>
+            <button name="action_cancel" states="ship" type="object" string="Cancel"/>
+            <button name="action_done" type="object" string="Lock" states="ship"/>
+
+            <!--<button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"-->
+                    <!--type="action" context="{'default_advance_payment_method': 'percentage'}"-->
+                    <!--attrs="{'invisible': ['|',('invoice_status', '!=', 'no')]}"-->
+                    <!--states="ship"/>-->
+
+
+        </xpath>
+
+         <field name="state" position="replace" >                                                  #38-41 doubt
+             <field name="state"  widget="statusbar" statusbar_visible="draft,sent,sale,ship">
+             </field>
+         </field>
+
+    </field>
+</record>
+
+<!--<record id="saleinhpage" model="ir.ui.view">-->
+    <!--<field name="name">id.salee</field>-->
+    <!--<field name="model">sale.order</field>-->
+    <!--<field name="inherit_id" ref="sale.view_order_form"/>-->
+    <!--<field name="arch" type="xml">-->
+        <!--&lt;!&ndash; find field description and add the field-->
+             <!--idea_ids after it &ndash;&gt;-->
+        <!--<xpath expr="//field[@name='']" position="after">-->
+          <!--<field name="imo_nums" string="IMO NUMBERR"/>-->
+
+        <!--</xpath>-->
+    <!--</field>-->
+<!--</record>-->
+
+<record id="sale_ship_tree_inherit" model="ir.ui.view">
+    <field name="name">id.sale1</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_tree"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="ship_id" string="Ship"/>
+
+        </xpath>
+    </field>
+</record>
+
+<record id="sale_management_inherit" model="ir.ui.view">
+    <field name="name">sale management form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale_management.sale_order_view_form"/>
+    <field name="arch" type="xml">
+         <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="before">
+
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" context="{'default_advance_payment_method': 'percentage'}"
+                    attrs="{'invisible': ['|',('invoice_status', '!=', 'no'), ('state', 'not in', ['ship'])]}"/>
+         </xpath>
+    </field>
+</record>
+
+<!--<record id="buttoninh" model="ir.ui.view">-->
+    <!--<field name="name">but_inh</field>-->
+    <!--<field name="model">sale.order</field>-->
+    <!--<field name="inherit_id" ref="sale.view_order_form"/>-->
+    <!--<field name="arch" type="xml">-->
+        <!--&lt;!&ndash;<xpath expr="//form/header/button[@name='action_cancel']" postition='after'>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button string="Confirm_Ship" states="draft,sent,sale" type="object" name="confirm_ship" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</xpath>&ndash;&gt;-->
+    <!--</field>-->
+<!--</record>-->
+
+
+</odoo>
